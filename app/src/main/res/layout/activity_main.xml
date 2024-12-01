@@ -85,8 +85,19 @@
                 android:layout_margin="16dp"
                 android:src="@drawable/linkedin"
                 android:id="@+id/linkedin_btn" />
-
         </LinearLayout>
+
+        <!-- Registration TextView -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account? Register here"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:id="@+id/register_text"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp" /> <!-- Add padding to increase touch area -->
 
     </LinearLayout>
 
