@@ -8,11 +8,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 
+import java.util.jar.Attributes;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText usernameInput, emailInput, passwordInput, confirmPasswordInput;
     private Button registerButton;
     private TextView loginRedirectText;
+    private DatabaseHelper dblogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,7 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration); // Link to your registration layout
 
         // Initialize UI elements
+        dblogin= new DatabaseHelper(this);
         usernameInput = findViewById(R.id.username_input);
         emailInput = findViewById(R.id.email_input);
         passwordInput = findViewById(R.id.password_input);
@@ -37,11 +41,9 @@ public class RegistrationActivity extends AppCompatActivity {
             if (password.equals(confirmPassword)) {
                 // Registration logic (e.g., send data to server)
                 Toast.makeText(RegistrationActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                // Optionally navigate to another activity after successful registration
-                // Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                // startActivity(intent);
             } else {
-                Toast.makeText(RegistrationActivity.this, "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                boolean isregistered = dblogin.Insertuser(username,email,password);
+                Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
             }
         });
 
